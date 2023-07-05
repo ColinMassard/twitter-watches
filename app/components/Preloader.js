@@ -36,13 +36,6 @@ export default class Preloader extends Component {
   }
 
   createLoader () {
-    // TODO: Remove this if img on homepage
-    if (this.elements.images[0] === undefined) {
-      console.log('true')
-      this.onLoaded()
-
-      this.elements.numberText.innerHTML = '100%'
-    }
     each(this.elements.images, element => {
       element.onload = _ => this.onAssetLoaded(element)
       element.src = element.getAttribute('data-src')

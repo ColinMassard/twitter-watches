@@ -1,0 +1,23 @@
+.home
+  &__gallery
+    width: 125%
+    transform: rotate(45deg) translate(-10%,-50%)
+    
+  &__wrapper
+
+    &:before,
+    &:after 
+      content: ''
+      height: 35rem
+      left: 0
+      position: absolute
+      width: 100%
+      z-index: 1
+
+    &:before 
+      background: linear-gradient(to bottom, $color-primary 5%, rgba($color-primary, 0) 85%)
+      top: 0
+
+    &:after 
+      background: linear-gradient(to top, $color-primary 5%, rgba($color-primary, 0) 85%)
+      bottom: 0
