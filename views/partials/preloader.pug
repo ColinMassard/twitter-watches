@@ -1,0 +1,5 @@
+.preloader.text-center.flex.items-center.justify-center.h-full.w-full.absolute.top-0.left-0.bg-primary.z-max
+  p.preloader__text.max-w-5xl.font-none!=preloader.data.title.replace(/\n/g, '<br>')
+
+  .preloader__number.text-xl(class="absolute bottom-20 left-1/2 overflow-hidden transform -translate-1/2 lg:text-sm")
+    .preloader__number__text.inline-block 0%
