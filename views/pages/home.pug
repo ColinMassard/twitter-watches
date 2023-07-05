@@ -6,7 +6,7 @@ block variables
 block content
   .home.bg-primary
     .home__wrapper.h-screen
-      .relative.isolate.px-6.pt-14.z-50.flex.items-center.h-full(class='lg:px-8')
+      .relative.isolate.px-6.z-50.flex.items-center.h-full(class='lg:px-8')
         .mx-auto.max-w-2xl.py-32(class='sm:py-48 lg:py-56')
           .text-center
             h1.text-4xl.font-bold.tracking-tight.text-white(class='sm:text-6xl')=home.data.title
@@ -15,4 +15,4 @@ block content
       .home__gallery.absolute.left-0.top-0.w-full.h-full.grid.grid-cols-6.gap-6
         each media in home.data.gallery
           figure.home__gallery__media
-            img.home__gallery__media__image.img-cover.opacity-75(alt=media.image.alt data-src=media.image.url)
+            img.home__gallery__media__image.img-cover.opacity-50(alt=media.image.alt data-src=media.image.url)
