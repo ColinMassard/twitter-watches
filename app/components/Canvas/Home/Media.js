@@ -53,7 +53,7 @@ export default class {
 
     this.mesh.setParent(this.scene)
 
-    this.mesh.rotation.z = GSAP.utils.random(-Math.PI * 0.03, Math.PI * 0.03)
+    // this.mesh.rotation.z = -Math.PI / 4
   }
 
   createBounds ({ sizes }) {
@@ -73,7 +73,7 @@ export default class {
     GSAP.fromTo(this.program.uniforms.uAlpha, {
       value: 0
     }, {
-      value: 0.4
+      value: 1
     })
   }
 
@@ -103,6 +103,9 @@ export default class {
   updateScale () {
     this.width = this.bounds.width / window.innerWidth
     this.height = this.bounds.height / window.innerHeight
+
+    // o.mesh.position.y = this.currentScroll -o.top + this.height/2 - o.height/2
+    // o.mesh.position.x = o.left - this.width/2 + o.width/2
 
     this.mesh.scale.x = this.sizes.width * this.width
     this.mesh.scale.y = this.sizes.height * this.height
