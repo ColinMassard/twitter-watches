@@ -2,6 +2,8 @@ import NormalizeWheel from 'normalize-wheel'
 
 import each from 'lodash/each'
 
+import Canvas from 'components/Canvas'
+
 import Preloader from 'components/Preloader'
 
 import About from 'pages/About'
@@ -10,6 +12,7 @@ class App {
   constructor () {
     this.createContent()
 
+    this.createCanvas()
     this.createPreloader()
     this.createPages()
 
@@ -17,6 +20,7 @@ class App {
     this.addLinkListeners()
 
     this.onResize()
+
     this.update()
   }
 
@@ -25,6 +29,12 @@ class App {
       canvas: this.canvas
     })
     this.preloader.once('completed', this.onPreloaded.bind(this))
+  }
+
+  createCanvas () {
+    this.canvas = new Canvas({
+      template: this.template
+    })
   }
 
   createContent () {
@@ -50,6 +60,8 @@ class App {
   onPreloaded () {
     this.onResize()
 
+    this.canvas.onPreloaded()
+
     this.page.show()
   }
 
@@ -61,6 +73,7 @@ class App {
   }
 
   async onChange ({ url, push = true }) {
+    this.canvas.onChangeStart(this.template, url)
     await this.page.hide()
 
     const request = await window.fetch(url)
@@ -101,22 +114,41 @@ class App {
   }
 
   onResize () {
+    window.requestAnimationFrame(_ => {
+      if (this.canvas && this.canvas.onResize) {
+        this.canvas.onResize()
+      }
+    })
+
     if (this.page && this.page.onResize) {
       this.page.onResize()
     }
   }
 
   onTouchDown (event) {
+    if (this.canvas && this.canvas.onTouchDown) {
+      this.canvas.onTouchDown(event)
+    }
   }
 
   onTouchMove (event) {
+    if (this.canvas && this.canvas.onTouchMove) {
+      this.canvas.onTouchMove(event)
+    }
   }
 
   onTouchUp (event) {
+    if (this.canvas && this.canvas.onTouchUp) {
+      this.canvas.onTouchUp(event)
+    }
   }
 
   onWheel (event) {
     const normalizedWheel = NormalizeWheel(event)
+
+    if (this.canvas && this.canvas.update) {
+      this.canvas.onWheel(normalizedWheel)
+    }
 
     if (this.page && this.page.update) {
       this.page.onWheel(normalizedWheel)
@@ -130,6 +162,12 @@ class App {
     if (this.page && this.page.update) {
       this.page.update()
     }
+
+    if (this.canvas && this.canvas.update) {
+      this.canvas.update(this.page.scroll)
+    }
+
+    this.frame = window.requestAnimationFrame(this.update.bind(this))
   }
 
   /****

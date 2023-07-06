@@ -58,6 +58,9 @@ app.use((req, res, next) => {
   next()
 })
 
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'pug')
+
 const handleRequest = async api => {
   const home = await api.getSingle('home')
   const about = await api.getSingle('about')
@@ -66,6 +69,18 @@ const handleRequest = async api => {
   const meta = await api.getSingle('meta')
 
   const assets = []
+
+  home.data.gallery.forEach(item => {
+    assets.push(item.image.url)
+  })
+
+  // about.data.body.forEach(section => {
+  //   if (section.slice_type === 'gallery') {
+  //     section.items.forEach(item => {
+  //       assets.push(item.image.url)
+  //     })
+  //   }
+  // })
 
   return {
     assets,
@@ -76,9 +91,6 @@ const handleRequest = async api => {
     preloader
   }
 }
-
-app.set('views', path.join(__dirname, 'views'))
-app.set('view engine', 'pug')
 
 app.get('/', async (req, res) => {
   const api = await initApi(req)
