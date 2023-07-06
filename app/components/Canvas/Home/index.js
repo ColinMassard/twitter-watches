@@ -158,7 +158,7 @@ export default class {
         const y = media.mesh.position.y + scaleY
 
         if (y < -offsetY) {
-          // media.extra.y += this.gallerySizes.height
+          media.extra.y += this.gallerySizes.height
 
           // media.mesh.rotation.z = GSAP.utils.random(-Math.PI * 0.03, Math.PI * 0.03)
         }
@@ -166,7 +166,7 @@ export default class {
         const y = media.mesh.position.y - scaleY
 
         if (y > offsetY) {
-          // media.extra.y -= this.gallerySizes.height
+          media.extra.y -= this.gallerySizes.height
 
           // media.mesh.rotation.z = GSAP.utils.random(-Math.PI * 0.03, Math.PI * 0.03)
         }
