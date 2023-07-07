@@ -104,9 +104,6 @@ export default class {
     this.width = this.bounds.width / window.innerWidth
     this.height = this.bounds.height / window.innerHeight
 
-    // o.mesh.position.y = this.currentScroll -o.top + this.height/2 - o.height/2
-    // o.mesh.position.x = o.left - this.width/2 + o.width/2
-
     this.mesh.scale.x = this.sizes.width * this.width
     this.mesh.scale.y = this.sizes.height * this.height
   }
@@ -117,15 +114,16 @@ export default class {
     this.mesh.position.x = (-this.sizes.width / 2) + (this.mesh.scale.x / 2) + (this.x * this.sizes.width) + this.extra.x
   }
 
-  updateY (y = 0) {
+  updateY (y = 0, multiplier) {
+    // console.log(multiplier)
     this.y = (this.bounds.top + y) / window.innerHeight
 
-    this.mesh.position.y = (this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height) + this.extra.y
+    this.mesh.position.y = (this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height) + this.extra.y * multiplier
   }
 
-  update (scroll, speed) {
+  update (scroll, speed, multiplier) {
     this.updateX(scroll.x)
-    this.updateY(scroll.y)
+    this.updateY(scroll.y, multiplier)
 
     this.program.uniforms.uSpeed.value = speed
   }

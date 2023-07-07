@@ -11,6 +11,9 @@ module.exports = {
       },
       zIndex: {
         max: '9999'
+      },
+      spacing: {
+        '128': '32rem'
       }
     }
   },

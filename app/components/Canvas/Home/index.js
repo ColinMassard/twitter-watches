@@ -106,22 +106,15 @@ export default class {
   }
 
   onTouchDown ({ x, y }) {
-    // this.speed.target = 1
 
-    // this.scrollCurrent.x = this.scroll.x
-    // this.scrollCurrent.y = this.scroll.y
   }
 
   onTouchMove ({ x, y }) {
-    // const xDistance = x.start - x.end
-    // const yDistance = y.start - y.end
 
-    // this.x.target = this.scrollCurrent.x - xDistance
-    // this.y.target = this.scrollCurrent.y - yDistance
   }
 
   onTouchUp ({ x, y }) {
-    // this.speed.target = 0
+
   }
 
   onWheel ({ pixelX, pixelY }) {
@@ -151,27 +144,26 @@ export default class {
       const offsetY = this.sizes.height * 0.6
       const scaleY = media.mesh.scale.y / 2
 
-      console.log(offsetY)
-      console.log(scaleY)
+      // if (index % 2 === 0) {
+      //   this.multiplier = -1
+      // } else if (index % 2 === 1) {
+      this.multiplier = 1
+      // }
 
       if (this.y.direction === 'top') {
         const y = media.mesh.position.y + scaleY
 
         if (y < -offsetY) {
           media.extra.y += this.gallerySizes.height
-
-          // media.mesh.rotation.z = GSAP.utils.random(-Math.PI * 0.03, Math.PI * 0.03)
         }
       } else if (this.y.direction === 'bottom') {
         const y = media.mesh.position.y - scaleY
 
         if (y > offsetY) {
           media.extra.y -= this.gallerySizes.height
-
-          // media.mesh.rotation.z = GSAP.utils.random(-Math.PI * 0.03, Math.PI * 0.03)
         }
       }
-      media.update(this.scroll, this.speed.current)
+      media.update(this.scroll, this.speed.current, this.multiplier)
     })
   }
 

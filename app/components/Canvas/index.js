@@ -39,6 +39,7 @@ export default class Canvas {
   createCamera () {
     this.camera = new Camera(this.gl)
     this.camera.position.z = 5
+    // this.camera.rotation.z = Math.PI / 4
   }
 
   createScene () {

@@ -62,7 +62,6 @@ export default class Preloader extends Component {
     const percent = this.length / window.ASSETS.length
 
     this.elements.numberText.innerHTML = `${Math.round(percent * 100)}%`
-    console.log('loaded')
 
     if (percent === 1) {
       this.onLoaded()

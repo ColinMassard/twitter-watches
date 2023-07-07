@@ -1,8 +1,4 @@
 .home
-  &__gallery
-    // width: 125%
-    // transform: rotate(45deg) translate(-10%,-50%)
-    
   &__wrapper
 
     &:before,
@@ -21,3 +17,13 @@
     &:after 
       background: linear-gradient(to top, $color-primary 5%, rgba($color-primary, 0) 85%)
       bottom: 0
+
+.home__gallery__media
+  &:nth-child(1),
+  &:nth-child(2),
+  &:nth-child(3),
+  &:nth-child(4),
+  &:nth-child(5),
+  &:nth-child(6)
+    padding-top: 1.5rem
+    
