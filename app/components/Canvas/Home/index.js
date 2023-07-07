@@ -144,25 +144,40 @@ export default class {
       const offsetY = this.sizes.height * 0.6
       const scaleY = media.mesh.scale.y / 2
 
-      // if (index % 2 === 0) {
-      //   this.multiplier = -1
-      // } else if (index % 2 === 1) {
-      this.multiplier = 1
-      // }
+      if (index % 2 === 0) {
+        this.multiplier = -1
+      } else if (index % 2 === 1) {
+        this.multiplier = 1
+      }
 
-      if (this.y.direction === 'top') {
-        const y = media.mesh.position.y + scaleY
-
-        if (y < -offsetY) {
-          media.extra.y += this.gallerySizes.height
+      if (this.multiplier === 1) {
+        if (this.y.direction === 'top') {
+          const y = media.mesh.position.y + scaleY
+          if (y < -offsetY) {
+            media.extra.y += this.gallerySizes.height
+          }
+        } else if (this.y.direction === 'bottom') {
+          const y = media.mesh.position.y - scaleY
+          if (y > offsetY) {
+            media.extra.y -= this.gallerySizes.height
+          }
         }
-      } else if (this.y.direction === 'bottom') {
-        const y = media.mesh.position.y - scaleY
-
-        if (y > offsetY) {
-          media.extra.y -= this.gallerySizes.height
+      } else if (this.multiplier === -1) {
+        if (this.y.direction === 'top') {
+          // const y = media.mesh.position.y + scaleY
+          // const test = this.gallerySizes.height * this.multiplier
+          // if (y < -offsetY) {
+          //   media.extra.y += test
+          // }
+        } else if (this.y.direction === 'bottom') {
+          // const y = media.mesh.position.y - scaleY
+          // const test = this.gallerySizes.height
+          // if (y > offsetY) {
+          //   media.extra.y -= test
+          // }
         }
       }
+
       media.update(this.scroll, this.speed.current, this.multiplier)
     })
   }

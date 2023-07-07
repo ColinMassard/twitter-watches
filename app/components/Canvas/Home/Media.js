@@ -118,7 +118,7 @@ export default class {
     // console.log(multiplier)
     this.y = (this.bounds.top + y) / window.innerHeight
 
-    this.mesh.position.y = (this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height) + this.extra.y * multiplier
+    this.mesh.position.y = ((this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height) + this.extra.y) * multiplier
   }
 
   update (scroll, speed, multiplier) {
