@@ -118,7 +118,7 @@ export default class {
   }
 
   onWheel ({ pixelX, pixelY }) {
-    this.x.target += pixelX
+    // this.x.target += pixelX
     this.y.target += pixelY
   }
 
