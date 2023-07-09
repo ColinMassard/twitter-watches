@@ -120,8 +120,6 @@ export default class {
 
     this.mesh.position.y = ((this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height) + this.extra.y) * multiplier
 
-    // console.log(direction, scaleY, offsetY, height, this.mesh)
-
     if (multiplier === 1) {
       if (direction === 'top') {
         const y = media.mesh.position.y + scaleY
@@ -137,18 +135,18 @@ export default class {
         }
       }
     } else if (multiplier === -1) {
-      console.log('inverted')
       if (direction === 'top') {
         const y = media.mesh.position.y - scaleY
+        console.log(y, offsetY)
 
         if (y > offsetY) {
-          media.extra.y -= height
+          media.extra.y += height
         }
       } else if (direction === 'bottom') {
         const y = media.mesh.position.y + scaleY
 
         if (y < -offsetY) {
-          media.extra.y += height
+          media.extra.y -= height
         }
       }
     }
