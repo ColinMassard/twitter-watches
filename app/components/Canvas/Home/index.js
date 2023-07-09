@@ -144,26 +144,13 @@ export default class {
       const offsetY = this.sizes.height * 0.6
       const scaleY = media.mesh.scale.y / 2
 
-      // if (index % 2 === 0) {
-      //   this.multiplier = -1
-      // } else if (index % 2 === 1) {
-      this.multiplier = 1
-      // }
-
-      if (this.y.direction === 'top') {
-        const y = media.mesh.position.y + scaleY
-
-        if (y < -offsetY) {
-          media.extra.y += this.gallerySizes.height
-        }
-      } else if (this.y.direction === 'bottom') {
-        const y = media.mesh.position.y - scaleY
-
-        if (y > offsetY) {
-          media.extra.y -= this.gallerySizes.height
-        }
+      if (index % 2 === 0) {
+        this.multiplier = -1
+      } else if (index % 2 === 1) {
+        this.multiplier = 1
       }
-      media.update(this.scroll, this.speed.current, this.multiplier)
+
+      media.update(media, this.scroll, this.speed.current, this.multiplier, this.y.direction, this.gallerySizes.height, offsetY, scaleY)
     })
   }
 
