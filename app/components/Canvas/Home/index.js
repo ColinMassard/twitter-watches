@@ -150,35 +150,7 @@ export default class {
         this.multiplier = 1
       }
 
-      if (this.multiplier === 1) {
-        if (this.y.direction === 'top') {
-          const y = media.mesh.position.y + scaleY
-          if (y < -offsetY) {
-            media.extra.y += this.gallerySizes.height
-          }
-        } else if (this.y.direction === 'bottom') {
-          const y = media.mesh.position.y - scaleY
-          if (y > offsetY) {
-            media.extra.y -= this.gallerySizes.height
-          }
-        }
-      } else if (this.multiplier === -1) {
-        if (this.y.direction === 'top') {
-          // const y = media.mesh.position.y + scaleY
-          // const test = this.gallerySizes.height * this.multiplier
-          // if (y < -offsetY) {
-          //   media.extra.y += test
-          // }
-        } else if (this.y.direction === 'bottom') {
-          // const y = media.mesh.position.y - scaleY
-          // const test = this.gallerySizes.height
-          // if (y > offsetY) {
-          //   media.extra.y -= test
-          // }
-        }
-      }
-
-      media.update(this.scroll, this.speed.current, this.multiplier)
+      media.update(media, this.scroll, this.speed.current, this.multiplier, this.y.direction, this.gallerySizes.height, offsetY, scaleY)
     })
   }
 
