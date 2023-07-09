@@ -13,7 +13,8 @@ module.exports = {
         max: '9999'
       },
       spacing: {
-        '128': '32rem'
+        '128': '32rem',
+        '200': '50rem'
       }
     }
   },
