@@ -16,6 +16,8 @@ export default class {
     this.galleryElement = document.querySelector('.home__gallery')
     this.mediasElements = document.querySelectorAll('.home__gallery__media__image')
 
+    this.speedAutoScroll = 2
+
     this.x = {
       current: 0,
       target: 0,
@@ -126,6 +128,7 @@ export default class {
    * LOOP
    * ***/
   update () {
+    this.y.target += 2
     this.speed.current = GSAP.utils.interpolate(this.speed.current, this.speed.target, this.speed.lerp)
 
     this.x.current = GSAP.utils.interpolate(this.x.current, this.x.target, this.x.lerp)
@@ -150,7 +153,7 @@ export default class {
         this.multiplier = 1
       }
 
-      media.update(media, this.scroll, this.speed.current, this.multiplier, this.y.direction, this.gallerySizes.height, offsetY, scaleY)
+      media.update(media, this.scroll, this.speed.current, this.multiplier, this.y.direction, this.gallerySizes.height, offsetY, scaleY, this.y)
     })
   }
 

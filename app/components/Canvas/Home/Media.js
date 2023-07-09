@@ -73,7 +73,7 @@ export default class {
     GSAP.fromTo(this.program.uniforms.uAlpha, {
       value: 0
     }, {
-      value: 1
+      value: 0.75
     })
   }
 
@@ -115,7 +115,6 @@ export default class {
   }
 
   updateY (media, y = 0, multiplier, direction, height, offsetY, scaleY) {
-    // console.log(multiplier)
     this.y = (this.bounds.top + y) / window.innerHeight
 
     this.mesh.position.y = ((this.sizes.height / 2) - (this.mesh.scale.y / 2) - (this.y * this.sizes.height) + this.extra.y) * multiplier
@@ -137,7 +136,6 @@ export default class {
     } else if (multiplier === -1) {
       if (direction === 'top') {
         const y = media.mesh.position.y - scaleY
-        console.log(y, offsetY)
 
         if (y > offsetY) {
           media.extra.y += height
@@ -152,10 +150,10 @@ export default class {
     }
   }
 
-  update (media, scroll, speed, multiplier, direction, height, offsetY, scaleY) {
+  update (media, scroll, speed, multiplier, direction, height, offsetY, scaleY, y) {
     this.updateX(scroll.x)
     this.updateY(media, scroll.y, multiplier, direction, height, offsetY, scaleY)
 
-    this.program.uniforms.uSpeed.value = speed
+    this.program.uniforms.uSpeed.value = ((y.current - y.target) / this.sizes.width) * 0.005
   }
 }
