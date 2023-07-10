@@ -15,6 +15,8 @@ export default class {
 
     this.galleryElement = document.querySelector('.home__gallery')
     this.mediasElements = document.querySelectorAll('.home__gallery__media__image')
+    this.slotRoll = document.querySelector('.home__button')
+    this.buttonRoll = document.querySelector('.home__button button')
 
     this.speedAutoScroll = 2
 
@@ -51,6 +53,7 @@ export default class {
     this.onResize({
       sizes: this.sizes
     })
+    this.createButtonRoll(this.slotRoll)
 
     this.group.setParent(this.scene)
 
@@ -74,6 +77,40 @@ export default class {
         scene: this.group,
         sizes: this.sizes
       })
+    })
+  }
+
+  createButtonRoll (buttonRoll) {
+    let mediaAssets = []
+
+    buttonRoll.addEventListener('click', _ => {
+      mediaAssets = []
+      this.speedAutoScroll = 0
+      this.y.target = Math.random() * 10000
+      map(this.medias, (media, index) => {
+        mediaAssets[index] = [media.bounds.top, media.element.alt ]
+        // console.log(media.bounds.top)
+        // console.log(media.element.alt)
+        // mediaAssets.push(media.bounds.top)
+      })
+      console.log(mediaAssets)
+      console.log(this.scroll.y + this.sizes.height / 2)
+      const target = this.scroll.y + this.sizes.height / 2
+
+      // mediaAssets.sort((a, b) => {
+      //   return Math.abs(target - a) - Math.abs(target - b)
+      // })
+      mediaAssets.sort(function (a, b) {
+        return a[0] - b[0]
+      })
+
+      const closest = mediaAssets.reduce((a, b) => {
+        return Math.abs(b - target) < Math.abs (a - target) ? b : a
+      })
+
+      console.log(closest)
+
+      this.buttonRoll.innerText = 'Roll again ?'
     })
   }
 
@@ -108,7 +145,6 @@ export default class {
   }
 
   onTouchDown ({ x, y }) {
-
   }
 
   onTouchMove ({ x, y }) {
@@ -128,7 +164,7 @@ export default class {
    * LOOP
    * ***/
   update () {
-    this.y.target += 2
+    this.y.target += this.speedAutoScroll
     this.speed.current = GSAP.utils.interpolate(this.speed.current, this.speed.target, this.speed.lerp)
 
     this.x.current = GSAP.utils.interpolate(this.x.current, this.x.target, this.x.lerp)

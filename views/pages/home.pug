@@ -12,7 +12,10 @@ block content
             h1.text-4xl.font-bold.tracking-tight.text-white(class='sm:text-6xl')=home.data.title
             p.mt-6.text-lg.leading-8.text-white=home.data.description
 
-      .home__gallery.absolute.left-0.top-0.w-full.grid.grid-cols-4.gap-8.h-auto
+      .home__gallery.absolute.left-0.top-0.w-full.grid.grid-cols-2.gap-5.h-auto(class="lg:grid-cols-4 lg:gap-8")
         each media in home.data.gallery
           figure.home__gallery__media
             img.home__gallery__media__image.img-cover.opacity-0.max-h-200(alt=media.image.alt data-src=media.image.url)
+
+      .home__button.absolute.z-50(class="left-1/2 transform -translate-x-1/2 bottom-20")
+        button.py-5.px-8.border-white.border-solid.border.text-xl.font-medium(class="transition-all ease-in-out duration-500 hover:bg-white hover:text-primary ") Find my watch combo
