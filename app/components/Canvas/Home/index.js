@@ -17,6 +17,9 @@ export default class {
     this.mediasElements = document.querySelectorAll('.home__gallery__media__image')
     this.slotRoll = document.querySelector('.home__button')
     this.buttonRoll = document.querySelector('.home__button button')
+    this.homeResult = document.querySelector('.home__result')
+    this.nameList = document.querySelector('.watch__name-list')
+    this.imageList = document.querySelector('.watch__image-list ')
 
     this.speedAutoScroll = 2
 
@@ -84,6 +87,9 @@ export default class {
     let mediaAssets = []
 
     buttonRoll.addEventListener('click', _ => {
+      this.nameList.innerHTML = ''
+      this.imageList.innerHTML = ''
+
       // this.scroll.y = 0
       mediaAssets = []
       this.speedAutoScroll = 0
@@ -97,8 +103,23 @@ export default class {
       // mediaAssets.sort(function (a, b) {
       //   return Math.abs(target - a[0]) - Math.abs(target - b[0])
       // })
+      for (let i = 0; i < 4; i++) {
+        const newName = document.createElement('li')
+        newName.innerHTML = mediaAssets[i][1]
+        newName.classList = 'text-primary font-medium text-lg text-center'
+        this.nameList.appendChild(newName)
 
-      console.log(mediaAssets)
+        const newImage = document.createElement('img')
+        newImage.src = mediaAssets[i][2]
+        newImage.classList = 'img-cover'
+        this.imageList.appendChild(newImage)
+      }
+
+      GSAP.to(this.homeResult, {
+        autoAlpha: 1
+      })
+
+      console.log(mediaAssets[0], mediaAssets[1], mediaAssets[2], mediaAssets[3])
       this.buttonRoll.innerText = 'Roll again ?'
     })
   }

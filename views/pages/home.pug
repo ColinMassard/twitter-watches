@@ -6,7 +6,7 @@ block variables
 block content
   .home.bg-primary
     .home__wrapper.h-screen
-      .relative.isolate.px-6.z-50.flex.items-center.h-full(class='lg:px-8')
+      .relative.isolate.px-6.z-30.flex.items-center.h-full(class='lg:px-8')
         .mx-auto.max-w-2xl.py-32(class='sm:py-48 lg:py-56')
           .text-center
             h1.text-4xl.font-bold.tracking-tight.text-white(class='sm:text-6xl')=home.data.title
@@ -19,3 +19,9 @@ block content
 
       .home__button.absolute.z-50(class="left-1/2 transform -translate-x-1/2 bottom-20")
         button.py-5.px-8.border-white.border-solid.border.text-xl.font-medium(class="transition-all ease-in-out duration-500 hover:bg-white hover:text-primary ") Find my watch combo
+      
+      .home__result.p-5.bg-white.z-40.absolute.rounded.shadow.w-full.max-w-2xl.opacity-0(class="transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2")
+        .text-center.text-2xl.text-primary.font-bold Your watch combo
+        ul.watch__name-list.grid.grid-cols-2.gap-5.pt-5
+        ul.watch__image-list.grid.grid-cols-2.gap-5.rounded.pt-5
+        
