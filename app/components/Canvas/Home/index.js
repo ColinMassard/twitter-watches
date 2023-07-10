@@ -84,26 +84,21 @@ export default class {
     let mediaAssets = []
 
     buttonRoll.addEventListener('click', _ => {
+      // this.scroll.y = 0
       mediaAssets = []
       this.speedAutoScroll = 0
-      this.y.target = Math.random() * 10000
+      this.y.target = Math.random() * 5000
       map(this.medias, (media, index) => {
-        mediaAssets[index] = [media.bounds.top, media.element.alt]
+        mediaAssets[index] = [media.bounds.top, media.element.alt, media.element.currentSrc]
       })
-      console.log(mediaAssets)
-      console.log(this.scroll.y + this.sizes.height / 2)
       const target = this.scroll.y + this.sizes.height / 2
+      console.log(target)
 
-      mediaAssets.sort(function (a, b) {
-        return a[0] - b[0]
-      })
+      // mediaAssets.sort(function (a, b) {
+      //   return Math.abs(target - a[0]) - Math.abs(target - b[0])
+      // })
 
-      const closest = mediaAssets.reduce((a, b) => {
-        return Math.abs(b - target) < Math.abs(a - target) ? b : a
-      })
-
-      console.log(closest)
-
+      console.log(mediaAssets)
       this.buttonRoll.innerText = 'Roll again ?'
     })
   }
