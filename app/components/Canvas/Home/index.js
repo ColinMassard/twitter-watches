@@ -88,24 +88,18 @@ export default class {
       this.speedAutoScroll = 0
       this.y.target = Math.random() * 10000
       map(this.medias, (media, index) => {
-        mediaAssets[index] = [media.bounds.top, media.element.alt ]
-        // console.log(media.bounds.top)
-        // console.log(media.element.alt)
-        // mediaAssets.push(media.bounds.top)
+        mediaAssets[index] = [media.bounds.top, media.element.alt]
       })
       console.log(mediaAssets)
       console.log(this.scroll.y + this.sizes.height / 2)
       const target = this.scroll.y + this.sizes.height / 2
 
-      // mediaAssets.sort((a, b) => {
-      //   return Math.abs(target - a) - Math.abs(target - b)
-      // })
       mediaAssets.sort(function (a, b) {
         return a[0] - b[0]
       })
 
       const closest = mediaAssets.reduce((a, b) => {
-        return Math.abs(b - target) < Math.abs (a - target) ? b : a
+        return Math.abs(b - target) < Math.abs(a - target) ? b : a
       })
 
       console.log(closest)
