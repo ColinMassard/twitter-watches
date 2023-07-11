@@ -110,17 +110,12 @@ export default class {
         this.y.target = Math.round(Math.random() * 10) * mediaAssets[0][3]
       }
 
-      console.log(mediaAssets)
-
       const target = mediaAssets[mediaAssets.length - 1][0] - this.y.target + (window.innerHeight / 2) + (mediaAssets[0][3] / 2)
-      console.log(this.scroll)
-      console.log(target)
 
       mediaAssets.sort(function (a, b) {
         return Math.abs(target - a[0]) - Math.abs(target - b[0])
       })
 
-      console.log(mediaAssets)
       for (let i = 0; i < 4; i++) {
         const newName = document.createElement('li')
         newName.innerHTML = mediaAssets[i][1]

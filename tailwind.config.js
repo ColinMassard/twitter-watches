@@ -1,3 +1,4 @@
+/* eslint-disable quote-props */
 module.exports = {
   content: ['./views/**/*.pug', './styles/index.sass'],
   theme: {
@@ -18,10 +19,10 @@ module.exports = {
         max: '9999'
       },
       spacing: {
-        "container-md": "80%",
-        "container": "90%",
+        'container-md': '80%',
+        'container': '90%',
         '128': '32rem',
-        '200': '50rem',
+        '200': '50rem'
       }
     }
   },
