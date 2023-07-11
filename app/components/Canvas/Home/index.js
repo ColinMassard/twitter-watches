@@ -87,22 +87,31 @@ export default class {
     let mediaAssets = []
 
     buttonRoll.addEventListener('click', _ => {
+      /****
+       * RESETS
+       * ***/
       this.nameList.innerHTML = ''
       this.imageList.innerHTML = ''
-
-      // this.scroll.y = 0
+      this.y.target = 0
       mediaAssets = []
       this.speedAutoScroll = 0
-      this.y.target = Math.random() * 5000
+
+      /****
+       * ANIMATIONS
+       * ***/
       map(this.medias, (media, index) => {
-        mediaAssets[index] = [media.bounds.top, media.element.alt, media.element.currentSrc]
+        mediaAssets[index] = [media.bounds.top, media.element.alt, media.element.currentSrc, media.bounds.height]
       })
-      const target = this.scroll.y + this.sizes.height / 2
+
+      this.y.target = Math.round(Math.random() * 10) * mediaAssets[0][3]
+
+      const target = this.y.target
       console.log(target)
 
       // mediaAssets.sort(function (a, b) {
       //   return Math.abs(target - a[0]) - Math.abs(target - b[0])
       // })
+
       for (let i = 0; i < 4; i++) {
         const newName = document.createElement('li')
         newName.innerHTML = mediaAssets[i][1]
@@ -115,11 +124,12 @@ export default class {
         this.imageList.appendChild(newImage)
       }
 
-      GSAP.to(this.homeResult, {
-        autoAlpha: 1
-      })
+      // GSAP.to(this.homeResult, {
+      //   autoAlpha: 1
+      // })
 
-      console.log(mediaAssets[0], mediaAssets[1], mediaAssets[2], mediaAssets[3])
+      console.log(mediaAssets)
+
       this.buttonRoll.innerText = 'Roll again ?'
     })
   }
@@ -168,6 +178,7 @@ export default class {
   onWheel ({ pixelX, pixelY }) {
     // this.x.target += pixelX
     this.y.target += pixelY
+    console.log(this.y.target)
   }
 
   /****
