@@ -85,6 +85,7 @@ export default class {
 
   createButtonRoll (buttonRoll) {
     let mediaAssets = []
+    let lastY = 0
 
     buttonRoll.addEventListener('click', _ => {
       /****
@@ -105,17 +106,25 @@ export default class {
 
       this.y.target = Math.round(Math.random() * 10) * mediaAssets[0][3]
 
-      const target = this.y.target
+      while (this.y.target === lastY) {
+        this.y.target = Math.round(Math.random() * 10) * mediaAssets[0][3]
+      }
+
+      console.log(mediaAssets)
+
+      const target = mediaAssets[mediaAssets.length - 1][0] - this.y.target + (window.innerHeight / 2) + (mediaAssets[0][3] / 2)
+      console.log(this.scroll)
       console.log(target)
 
-      // mediaAssets.sort(function (a, b) {
-      //   return Math.abs(target - a[0]) - Math.abs(target - b[0])
-      // })
+      mediaAssets.sort(function (a, b) {
+        return Math.abs(target - a[0]) - Math.abs(target - b[0])
+      })
 
+      console.log(mediaAssets)
       for (let i = 0; i < 4; i++) {
         const newName = document.createElement('li')
         newName.innerHTML = mediaAssets[i][1]
-        newName.classList = 'text-primary font-medium text-lg text-center'
+        newName.classList = 'text-primary font-medium text-base text-center lg:text-lg'
         this.nameList.appendChild(newName)
 
         const newImage = document.createElement('img')
@@ -124,12 +133,10 @@ export default class {
         this.imageList.appendChild(newImage)
       }
 
-      // GSAP.to(this.homeResult, {
-      //   autoAlpha: 1
-      // })
-
-      console.log(mediaAssets)
-
+      GSAP.to(this.homeResult, {
+        autoAlpha: 1
+      })
+      lastY = this.y.target
       this.buttonRoll.innerText = 'Roll again ?'
     })
   }
@@ -178,7 +185,6 @@ export default class {
   onWheel ({ pixelX, pixelY }) {
     // this.x.target += pixelX
     this.y.target += pixelY
-    console.log(this.y.target)
   }
 
   /****
