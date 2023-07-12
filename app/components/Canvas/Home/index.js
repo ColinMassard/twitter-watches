@@ -59,8 +59,6 @@ export default class {
     })
     this.createButtonRoll(this.slotRoll)
 
-    this.createTweet(this.tweetButton)
-
     this.group.setParent(this.scene)
 
     this.show()
@@ -131,6 +129,8 @@ export default class {
         this.imageList.appendChild(newImage)
       }
 
+      this.createTweet(this.tweetButton, mediaAssets)
+
       GSAP.to(this.homeResult, {
         autoAlpha: 1
       })
@@ -139,10 +139,9 @@ export default class {
     })
   }
 
-  createTweet(tweetButton) {
-    tweetButton.addEventListener('click', _ => {
-      console.log('click')
-    })
+  createTweet (tweetButton, mediaArray) {
+    const newLink = `https://twitter.com/intent/tweet?text=Here%20is%20my%20Watch%20Combo%3A%0a%0a${mediaArray[0][1]}%0a${mediaArray[1][1]}%0a${mediaArray[2][1]}%0a${mediaArray[3][1]}%0aGenerate%20yours%20on%20%20${window.location.href}`
+    tweetButton.setAttribute('href', newLink)
   }
 
   /****
