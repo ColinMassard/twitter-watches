@@ -19,7 +19,8 @@ export default class {
     this.buttonRoll = document.querySelector('.home__button button')
     this.homeResult = document.querySelector('.home__result')
     this.nameList = document.querySelector('.watch__name-list')
-    this.imageList = document.querySelector('.watch__image-list ')
+    this.imageList = document.querySelector('.watch__image-list')
+    this.tweetButton = document.querySelector('.home__tweet')
 
     this.speedAutoScroll = 2
 
@@ -57,6 +58,8 @@ export default class {
       sizes: this.sizes
     })
     this.createButtonRoll(this.slotRoll)
+
+    this.createTweet(this.tweetButton)
 
     this.group.setParent(this.scene)
 
@@ -136,6 +139,12 @@ export default class {
     })
   }
 
+  createTweet(tweetButton) {
+    tweetButton.addEventListener('click', _ => {
+      console.log('click')
+    })
+  }
+
   /****
    * ANIMATIONS
    * ***/
@@ -164,6 +173,10 @@ export default class {
     this.scroll.y = this.y.target = 0
 
     map(this.medias, media => media.onResize(event, this.scroll))
+
+    GSAP.to(this.homeResult, {
+      autoAlpha: 0
+    })
   }
 
   onTouchDown ({ x, y }) {

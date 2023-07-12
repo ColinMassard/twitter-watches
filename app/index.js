@@ -188,20 +188,6 @@ class App {
 
     window.addEventListener('resize', this.onResize.bind(this))
   }
-
-  addLinkListeners () {
-    const links = document.querySelectorAll('a')
-
-    each(links, link => {
-      link.onclick = event => {
-        event.preventDefault()
-
-        const { href } = link
-
-        this.onChange({ url: href })
-      }
-    })
-  }
 }
 
 new App()
