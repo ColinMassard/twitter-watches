@@ -188,6 +188,10 @@ class App {
 
     window.addEventListener('resize', this.onResize.bind(this))
   }
+
+  addLinkListeners () {
+
+  }
 }
 
 new App()
