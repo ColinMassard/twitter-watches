@@ -143,6 +143,8 @@ export default class {
       GSAP.to(this.homeResult, {
         autoAlpha: 0
       })
+
+      this.speedAutoScroll = 2
     })
   }
 
