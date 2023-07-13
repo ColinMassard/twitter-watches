@@ -21,6 +21,7 @@ export default class {
     this.nameList = document.querySelector('.watch__name-list')
     this.imageList = document.querySelector('.watch__image-list')
     this.tweetButton = document.querySelector('.home__tweet')
+    this.closeButton = document.querySelector('.home__close-button')
 
     this.speedAutoScroll = 2
 
@@ -136,6 +137,12 @@ export default class {
       })
       lastY = this.y.target
       this.buttonRoll.innerText = 'Roll again ?'
+    })
+
+    this.closeButton.addEventListener('click', _ => {
+      GSAP.to(this.homeResult, {
+        autoAlpha: 0
+      })
     })
   }
 
